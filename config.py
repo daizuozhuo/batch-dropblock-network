@@ -56,6 +56,10 @@ class DefaultConfig(object):
                 self.datatype = 'cub'
             elif 'car' in self.dataset:
                 self.datatype = 'car'
+            elif 'clothes' in self.dataset:
+                self.datatype = 'clothes'
+            elif 'product' in self.dataset:
+                self.datatype = 'product'
 
     def _state_dict(self):
         return {k: getattr(self, k) for k, _ in DefaultConfig.__dict__.items()

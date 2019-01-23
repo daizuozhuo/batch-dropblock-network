@@ -65,6 +65,14 @@ class TrainTransform(object):
             x = pad_shorter(x)
             x = T.Resize((256, 256))(x)
             x = T.RandomCrop((224, 224))(x)
+        elif self.data == 'clothes':
+            x = pad_shorter(x)
+            x = T.Resize((256, 256))(x)
+            x = T.RandomCrop((224, 224))(x)
+        elif self.data == 'product':
+            x = pad_shorter(x)
+            x = T.Resize((256, 256))(x)
+            x = T.RandomCrop((224, 224))(x)
         elif self.data == 'cifar':
             x = T.Resize((40, 40))(x)
             x = T.RandomCrop((32, 32))(x)
@@ -87,6 +95,12 @@ class TestTransform(object):
         elif self.data == 'car':
             #x = pad_shorter(x)
             x = T.Resize((256, 256))(x)
+        elif self.data == 'clothes':
+            x = pad_shorter(x)
+            x = T.Resize((256, 256))(x)
+        elif self.data == 'product':
+            x = pad_shorter(x)
+            x = T.Resize((224, 224))(x)
         elif self.data == 'person':
             x = T.Resize((384, 128))(x)
 
