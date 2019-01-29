@@ -1,6 +1,9 @@
 # Batch Feature Erasing for Person Re-identification and Beyond
 Official source code of paper https://arxiv.org/abs/1811.07130
 
+## Update on 2019.1.29
+Traning scripts are released! Please look at the training section of README.md.
+
 ## Update on 2019.1.23
 In-Shop Clothes Retrieval dataset and pretrained model are released!. The rank-1 result is 89.5 which is a litter bit higher than paper reported.
 
@@ -47,15 +50,23 @@ model   |[aliyun](http://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/bf
 You can download the pre-trained models from the above table and evaluate on person re-ID datasets.
 For example, to evaluate CUHK03-Label dataset, you can download the model to './pytorch-ckpt/cuhk_label_bfe' directory and run the following commands.
 
-## Evaluate Market1501
+### Evaluate Market1501
 ```bash
 python3 main_reid.py train --save_dir='./pytorch-ckpt/market_bfe' --model_name=bfe --train_batch=32 --test_batch=32 --dataset=market1501 --pretrained_model='./pytorch-ckpt/market_bfe/944.pth.tar' --evaluate
 ```
-## Evaluate CUHK03-Label
+### Evaluate CUHK03-Label
 ```bash
 python3 main_reid.py train --save_dir='./pytorch-ckpt/cuhk_label_bfe' --model_name=bfe --train_batch=32 --test_batch=32 --dataset=cuhk-label  --pretrained_model='./pytorch-ckpt/cuhk_label_bfe/750.pth.tar' --evaluate
 ```
-## Evaluate In-Shop clothes
+### Evaluate In-Shop clothes
 ```bash
 python main_reid.py train --save_dir='./pytorch-ckpt/clothes_bfe' --model_name=bfe --pretrained_model='./pytorch-ckpt/clothes_bfe/clothes_895.pth.tar' --test_batch=32 --dataset=clothes --evaluate
 ```
+
+## Training
+
+### Traning Market1501
+```bash
+python main_reid.py train --save_dir='./pytorch-ckpt/market-bfe' --max_epoch=400 --eval_step=30 --dataset=market1501 --test_batch=128 --train_batch=128 --optim=adam --adjust_lr
+```
+This traning command is tested on 4 GTX1080 gpus. You shoud get a result around 95%.

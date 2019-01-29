@@ -193,7 +193,7 @@ class BFE(nn.Module):
         self.res_part2 = Bottleneck(2048, 512)
      
         self.part_maxpool = nn.AdaptiveMaxPool2d((1,1))
-        self.batch_crop = BatchDrop(width_ratio, height_ratio)
+        self.batch_crop = BatchDrop(height_ratio, width_ratio)
         self.reduction = nn.Sequential(
             nn.Linear(2048, 1024, 1),
             nn.BatchNorm1d(1024),

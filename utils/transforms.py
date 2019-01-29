@@ -1,7 +1,7 @@
 # encoding: utf-8
 from PIL import Image
 from torchvision import transforms as T
-from utils.random_erasing import RandomErasing
+from utils.random_erasing import RandomErasing, Cutout
 import random
 
 
@@ -55,7 +55,6 @@ class TrainTransform(object):
 
     def __call__(self, x):
         if self.data == 'person':
-            #x = Random2DTranslation(self.h, self.w)(x)
             x = T.Resize((384, 128))(x)
         elif self.data == 'car':
             x = pad_shorter(x)
@@ -79,7 +78,10 @@ class TrainTransform(object):
         x = T.RandomHorizontalFlip()(x)
         x = T.ToTensor()(x)
         x = T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])(x)
-        x = RandomErasing(probability = 0.5, mean=[0.0, 0.0, 0.0])(x)
+        if self.data == 'person':
+            x = Cutout(probability = 0.5, size=64, mean=[0.0, 0.0, 0.0])(x)
+        else:
+            x = RandomErasing(probability = 0.5, mean=[0.0, 0.0, 0.0])(x)
         return x
 
 

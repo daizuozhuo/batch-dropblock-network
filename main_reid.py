@@ -89,7 +89,7 @@ def train(**kwargs):
         model = ResNetBuilder(None, 1, True)
     elif opt.model_name == 'bfe':
         if opt.datatype == "person":
-            model = BFE(dataset.num_train_pids, 1.0, 0.5)
+            model = BFE(dataset.num_train_pids, 1.0, 0.2)
         else:
             model = BFE(dataset.num_train_pids, 0.5, 0.5)
     elif opt.model_name == 'ide':
@@ -144,9 +144,9 @@ def train(**kwargs):
     reid_trainer = cls_tripletTrainer(opt, model, optimizer, criterion, summary_writer)
 
     def adjust_lr(optimizer, ep):
-        if ep < 10:
-            lr = 1e-4*(ep+1)
-        if ep < 100:
+        if ep < 50:
+            lr = 1e-4*(ep//5+1)
+        elif ep < 200:
             lr = 1e-3
         elif ep < 300:
             lr = 1e-4
