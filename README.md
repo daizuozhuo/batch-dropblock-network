@@ -2,7 +2,7 @@
 Official source code of paper https://arxiv.org/abs/1811.07130
 
 ## Update on 2019.1.29
-Traning scripts are released! Please look at the training section of README.md.
+Traning scripts are released. The best Markt1501 result is 95.3%! Please look at the training section of README.md.
 
 ## Update on 2019.1.23
 In-Shop Clothes Retrieval dataset and pretrained model are released!. The rank-1 result is 89.5 which is a litter bit higher than paper reported.
