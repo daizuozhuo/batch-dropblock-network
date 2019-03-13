@@ -7,6 +7,17 @@ Traning scripts are released. The best Markt1501 result is 95.3%! Please look at
 ## Update on 2019.1.23
 In-Shop Clothes Retrieval dataset and pretrained model are released!. The rank-1 result is 89.5 which is a litter bit higher than paper reported.
 
+## Please cite this paper if you use this code in your research. 
+
+```
+@article{dai2018batch,
+  title={Batch Feature Erasing for Person Re-identification and Beyond},
+  author={Dai, Zuozhuo and Chen, Mingqiang and Zhu, Siyu and Tan, Ping},
+  journal={arXiv preprint arXiv:1811.07130},
+  year={2018}
+}
+```
+
 ## Setup running environment
 This project requires python3, cython, torch, torchvision, scikit-learn, tensorboardX, fire.
 The baseline source code is borrowed from https://github.com/L1aoXingyu/reid_baseline.
