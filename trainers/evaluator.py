@@ -43,16 +43,19 @@ class ResNetEvaluator:
             plt.close(fig)
 
     def evaluate(self, queryloader, galleryloader, queryFliploader, galleryFliploader, 
-        ranks=[1, 2, 4, 5,8, 10, 16, 20], re_ranking=False, savefig=False):
+        ranks=[1, 2, 4, 5,8, 10, 16, 20], eval_flip=False, re_ranking=False, savefig=False):
         self.model.eval()
         qf, q_pids, q_camids = [], [], []
         for inputs0, inputs1 in zip(queryloader, queryFliploader):
             inputs, pids, camids = self._parse_data(inputs0)
             feature0 = self._forward(inputs)
-            inputs, pids, camids = self._parse_data(inputs1)
-            feature1 = self._forward(inputs)
-            qf.append((feature0 + feature1) / 2.0)
-            
+            if eval_flip:
+                inputs, pids, camids = self._parse_data(inputs1)
+                feature1 = self._forward(inputs)
+                qf.append((feature0 + feature1) / 2.0)
+            else:
+                qf.append(feature0)
+
             q_pids.extend(pids)
             q_camids.extend(camids)
         qf = torch.cat(qf, 0)
@@ -65,9 +68,13 @@ class ResNetEvaluator:
         for inputs0, inputs1 in zip(galleryloader, galleryFliploader):
             inputs, pids, camids = self._parse_data(inputs0)
             feature0 = self._forward(inputs)
-            inputs, pids, camids = self._parse_data(inputs1)
-            feature1 = self._forward(inputs)
-            gf.append((feature0 + feature1) / 2.0)
+            if eval_flip:
+                inputs, pids, camids = self._parse_data(inputs1)
+                feature1 = self._forward(inputs)
+                gf.append((feature0 + feature1) / 2.0)
+            else:
+                gf.append(feature0)
+                
             g_pids.extend(pids)
             g_camids.extend(camids)
         gf = torch.cat(gf, 0)
