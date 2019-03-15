@@ -65,8 +65,8 @@ class BatchDrop(nn.Module):
     def forward(self, x):
         if self.training:
             h, w = x.size()[-2:]
-            rh = int(self.h_ratio * h)
-            rw = int(self.w_ratio * w)
+            rh = round(self.h_ratio * h)
+            rw = round(self.w_ratio * w)
             sx = random.randint(0, h-rh)
             sy = random.randint(0, w-rw)
             mask = x.new_ones(x.size())
@@ -92,22 +92,6 @@ class BatchCrop(nn.Module):
             mask[:, :, select, :] = 1
             x = x * mask
         return x
-
-class BatchCropElements(nn.Module):
-    def __init__(self, prob):
-        super(BatchCropElements, self).__init__()
-        self.prob = prob
-    def forward(self, x):
-        if self.training:
-            mask = x.new_zeros(x.size())
-            h, w = x.size()[-2:]
-            for i in range(h):
-                for j in range(w):
-                    if random.random() > self.prob:
-                        mask[:, :, i, j] = 1
-            x = x * mask
-        return x
-
 
 class ResNetBuilder(nn.Module):
     in_planes = 2048

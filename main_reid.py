@@ -89,7 +89,7 @@ def train(**kwargs):
         model = ResNetBuilder(None, 1, True)
     elif opt.model_name == 'bfe':
         if opt.datatype == "person":
-            model = BFE(dataset.num_train_pids, 1.0, 0.2)
+            model = BFE(dataset.num_train_pids, 1.0, 0.33)
         else:
             model = BFE(dataset.num_train_pids, 0.5, 0.5)
     elif opt.model_name == 'ide':
