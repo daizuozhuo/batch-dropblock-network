@@ -1,4 +1,4 @@
-# Batch Feature Erasing for Person Re-identification and Beyond
+# Batch DropBlock Network for Person Re-identification and Beyond
 Official source code of paper https://arxiv.org/abs/1811.07130
 
 ## Update on 2019.3.15
@@ -10,12 +10,12 @@ Traning scripts are released. The best Markt1501 result is 95.3%! Please look at
 ## Update on 2019.1.23
 In-Shop Clothes Retrieval dataset and pretrained model are released!. The rank-1 result is 89.5 which is a litter bit higher than paper reported.
 
-## Please cite this paper if you use this code in your research. 
+## This paper is accepted by ICCV 2019. Please cite if you use this code in your research. 
 
 ```
 @article{dai2018batch,
-  title={Batch Feature Erasing for Person Re-identification and Beyond},
-  author={Dai, Zuozhuo and Chen, Mingqiang and Zhu, Siyu and Tan, Ping},
+  title={Batch DropBlock Network for Person Re-identification and Beyond},
+  author={Dai, Zuozhuo and Chen, Mingqiang and Gu, Xiaodong and Zhu, Siyu and Tan, Ping},
   journal={arXiv preprint arXiv:1811.07130},
   year={2018}
 }
